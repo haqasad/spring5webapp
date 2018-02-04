@@ -1,8 +1,6 @@
 package guru.springframework.spring5webapp.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Publisher {
@@ -13,9 +11,6 @@ public class Publisher {
     private String pubName;
     private String pubAddress;
 
-    @OneToOne (mappedBy = "publisher")
-    private Set<Book> books = new HashSet<>();
-
     public Publisher() {
     }
 
@@ -23,13 +18,6 @@ public class Publisher {
 //        this.id = id;
         this.pubName = pubName;
         this.pubAddress = pubAddress;
-    }
-
-    public Publisher(String pubName, String pubAddress, Set<Book> book) {
-//        this.id = id;
-        this.pubName = pubName;
-        this.pubAddress = pubAddress;
-        this.books = book;
     }
 
     public Long getId() {
@@ -56,36 +44,4 @@ public class Publisher {
         this.pubAddress = pubAddress;
     }
 
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Publisher publisher = (Publisher) o;
-
-        return id != null ? id.equals(publisher.id) : publisher.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return "Publisher{" +
-                "id=" + id +
-                ", pubName='" + pubName + '\'' +
-                ", pubAddress='" + pubAddress + '\'' +
-                ", books=" + books +
-                '}';
-    }
 }
